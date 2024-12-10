@@ -1,6 +1,6 @@
-# LSI 9211-8i IT-mode (firmware) flashing USB
+# LSI 9300-16i IT-mode (firmware) flashing USB
 ## Overview
-This builds an image file which, when booted from a USB on a machine with an LSI 9211-8i Host Bus Adapter (HBA), will automatically flash the HBA with IT firmware.
+This builds an image file which, when booted from a USB on a machine with an LSI 9300-16i Host Bus Adapter (HBA), will automatically flash the HBA with IT firmware.
 
 ## Disabling LSI BIOS
 By default, the flashing utility flashes both firmware and bios. This allows booting from an HBA-attached disk, but may result in slow boot times. To get in faster boot times, but disable booting from the HBA, you can flash just the firmware via `./build.sh --disable-bios`.
@@ -8,7 +8,7 @@ By default, the flashing utility flashes both firmware and bios. This allows boo
 ## Requirements
 - [Docker](https://docs.docker.com/get-docker/) for building the image
 - A USB to write the image to
-- An LSI 9211-8i connected to a UEFI motherboard
+- An LSI 9300-16i connected to a UEFI motherboard
 
 ## Use
 These steps are for building on a Linux host. The image can also be built and flashed from a Windows or Mac, but those steps are not listed here.

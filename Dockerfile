@@ -15,12 +15,12 @@ RUN mkdir -p "$BOOT_DIR"
 RUN curl -s -o "$BOOT_DIR/bootx64.efi" 'https://raw.githubusercontent.com/tianocore/edk2/UDK2018/EdkShellBinPkg/FullShell/X64/Shell_Full.efi' 
 
 # Download & extract flashing utility
-RUN curl 'https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_6g_p20/Installer_P20_for_UEFI.zip' --output 'installer.zip'
-RUN unzip -j -d "$ROOT_DIR" installer.zip Installer_P20_for_UEFI/sas2flash_efi_ebc_rel/sas2flash.efi
+RUN curl 'https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_12g_p16_point_release/Installer_P16_for_UEFI.zip' --output 'installer.zip'
+RUN unzip -j -d "$ROOT_DIR" installer.zip Installer_P16_for_UEFI/sas3flash_udk_uefi_x64_rel/sas3flash.efi
 
 # Download & extract firmware
-RUN curl 'https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_6g_p20/9211-8i_Package_P20_IR_IT_FW_BIOS_for_MSDOS_Windows.zip' --output 'firmware.zip'
-RUN unzip -j -d "$ROOT_DIR" firmware.zip 9211-8i_Package_P20_IR_IT_FW_BIOS_for_MSDOS_Windows/Firmware/HBA_9211_8i_IT/2118it.bin 9211-8i_Package_P20_IR_IT_FW_BIOS_for_MSDOS_Windows/sasbios_rel/mptsas2.rom
+RUN curl 'https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_12g_p16_point_release/9300_16i_Package_P16_IT_FW_BIOS_for_MSDOS_Windows.zip' --output 'firmware.zip'
+RUN unzip -j -d "$ROOT_DIR" firmware.zip 9300_16i_Package_P16_IT_FW_BIOS_for_MSDOS_Windows/Firmware/SAS9300_16i_IT/SAS9300_16i_IT.bin 9300_16i_Package_P16_IT_FW_BIOS_for_MSDOS_Windows/sasbios_rel/mptsas3.rom
 ARG DISABLE_BIOS
 RUN if [ -n "$DISABLE_BIOS" ]; then touch "$ROOT_DIR/disable_bios"; fi
 
