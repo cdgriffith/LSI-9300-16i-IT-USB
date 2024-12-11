@@ -4,13 +4,13 @@
 # Find startup device, necessary to get files from the root directory
 for %i run (1 10)
   set root "fs%i%:"
-  if exist "%root%\sas2flash.efi" then
+  if exist "%root%\sas3flash.efi" then
     goto deviceFound
   endif
 endfor
 
 echo "*************************************************************"
-echo "*** ERROR: could not find device with file: sas2flash.efi ***"
+echo "*** ERROR: could not find device with file: sas3flash.efi ***"
 echo "*************************************************************"
 goto end
 
@@ -21,7 +21,8 @@ echo "*********************************"
 echo "*** Erasing existing firmware ***"
 echo "*********************************"
 echo " "
-sas2flash.efi -o -e 6
+sas3flash.efi -o -c 0 -e 6
+sas3flash.efi -o -c 1 -e 6
 
 # Exit on error
 if not %LastError% == 0 then
@@ -40,7 +41,8 @@ if exist "%root%\disable_bios" then
     echo "*****************************************"
     echo " "
 
-    sas2flash.efi -o -f 2118it.bin
+    sas3flash.efi -o -c 0 -f "%root%\SAS9300_16i_IT.bin"
+    sas3flash.efi -o -c 1 -f "%root%\SAS9300_16i_IT.bin"
 else
     # Flash firmware + BIOS, allowing booting from an HBA-attached disk
     echo "**************************************"
@@ -48,7 +50,8 @@ else
     echo "**************************************"
     echo " "
 
-    sas2flash.efi -o -f 2118it.bin -b mptsas2.rom
+    sas3flash.efi -o -c 0 -f "%root%\SAS9300_16i_IT.bin" -b "%root%\mptsas3.rom"
+    sas3flash.efi -o -c 1 -f "%root%\SAS9300_16i_IT.bin" -b "%root%\mptsas3.rom"
 endif
 
 # Exit on error
@@ -65,7 +68,7 @@ echo "********************************************"
 echo "*** Displaying HBA info for verification ***"
 echo "********************************************"
 echo " "
-sas2flash.efi -listall
+sas3flash.efi -listall
 
 echo " "
 echo "******************************************************************"
